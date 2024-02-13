@@ -7,15 +7,19 @@ export class User {
     @PrimaryGeneratedColumn()
     id :number;
 
-    @Column({type : "varchar",length : 28, nullable : false})
-    username : string;
+    @Column({name : 'twitch_id',type : "varchar",length : 40, nullable : false})
+    twitchId : string;
 
-    @Column({type : "varchar", nullable : false})
-    password : string;
+    @Column({name : 'display_name',type : "varchar",length : 40, nullable : false})
+    displayName : string;
 
-    @OneToMany(()=> Quiz, (quiz) => quiz.user)
+    @Column({name : 'profile_picture',type : "varchar",length : 155, nullable : false})
+    profilePicture : string;
+
+
+   /*  @OneToMany(()=> Quiz, (quiz) => quiz.user)
     ownQuiz : Quiz[];
 
     @ManyToMany(() => Quiz, (quiz) => quiz.userSaved)
-    savedQuiz : Quiz[];
+    savedQuiz : Quiz[]; */
 }

@@ -8,6 +8,6 @@ export class Quiz {
     @Column({type : 'varchar', length : 80, nullable : false})
     name : string;
 
-    @ManyToOne(() => Question, (question) => question.quiz)
-    questionList : Question[];
+    /* @ManyToOne(() => Question, (question) => question.quiz)
+    questionList : Question[]; */
 }
