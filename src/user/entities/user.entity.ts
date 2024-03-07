@@ -1,8 +1,9 @@
+import { Question } from "src/question/entities/question.entity";
 import { Quiz } from "src/quiz/entities/quiz.entity";
-import { PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from "typeorm";
+import { PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, JoinColumn, Entity } from "typeorm";
 
+@Entity()
 export class User {
-
 
     @PrimaryGeneratedColumn()
     id :number;
@@ -16,10 +17,15 @@ export class User {
     @Column({name : 'profile_picture',type : "varchar",length : 155, nullable : false})
     profilePicture : string;
 
+/////// RELATIONS 
 
-   /*  @OneToMany(()=> Quiz, (quiz) => quiz.user)
+    @OneToMany(()=> Quiz, (quiz) => quiz.owner)
     ownQuiz : Quiz[];
 
-    @ManyToMany(() => Quiz, (quiz) => quiz.userSaved)
-    savedQuiz : Quiz[]; */
+    @OneToMany(()=> Question, (question) => question.owner)
+    questions : Question[];
+
+    @ManyToMany(() => Quiz)
+    @JoinTable({name : "user_saved_quiz"})
+    savedQuiz : Quiz[]; 
 }

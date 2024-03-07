@@ -17,7 +17,15 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node ./node_modules/typeorm/cli",
+    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ormconfig.js",
+    "revert-migration": "npm run typeorm:cli -- migration:revert",
+    "typeorm:gen-migration": "typeorm migration:generate ./src/migration/mig  --dataSource  ./dist/typeORM.config.js",
+    "typeorm:path-config": "npm run build && npx typeorm -d dist/typeORM.config.js",
+    "typeorm:migration-generate": "npm run typeorm:path-config -- migration:generate ./migrations/version ",
+    "typeorm:db-create": "npm run build && ts-node ./node_modules/typeorm/index.js db:create -d dist/typeORM.config.js",
+    "typeorm:run-migrations": "npm run typeorm migration:run -- -d ./dist/typeORM.config.js"
   },
   "dependencies": {
     "@nestjs-hybrid-auth/twitch": "^1.0.0",
