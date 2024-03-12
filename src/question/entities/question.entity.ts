@@ -1,6 +1,6 @@
 import { Quiz } from "src/quiz/entities/quiz.entity";
 import { User } from "src/user/entities/user.entity";
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Question {
@@ -23,5 +23,6 @@ export class Question {
     questions : Question[]
 
     @ManyToOne(()=> User, (user) => user.questions)
+    @JoinColumn({name : "owner_id" })
     owner : User[];
 }

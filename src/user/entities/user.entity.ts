@@ -8,7 +8,7 @@ export class User {
     @PrimaryGeneratedColumn()
     id :number;
 
-    @Column({name : 'twitch_id',type : "varchar",length : 40, nullable : false})
+    @Column({name : 'twitch_id',type : "varchar",length : 40, nullable : false, unique : true})
     twitchId : string;
 
     @Column({name : 'display_name',type : "varchar",length : 40, nullable : false})
@@ -27,5 +27,6 @@ export class User {
 
     @ManyToMany(() => Quiz)
     @JoinTable({name : "user_saved_quiz"})
-    savedQuiz : Quiz[]; 
+    savedQuiz : Quiz[];
+ 
 }

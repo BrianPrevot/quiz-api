@@ -19,6 +19,6 @@ export class Quiz {
     @JoinTable({name : 'quiz_question'})
     questions : Question[]
 
-    @ManyToMany(()=> User, (user) => user.ownQuiz)
+    @ManyToOne(()=> User, (user) => user.ownQuiz)
     owner : User[];
 }

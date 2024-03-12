@@ -1,26 +1,26 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Request } from '@nestjs/common';
 import { QuizService } from './quiz.service';
+import { QueryBuilder } from 'typeorm';
+import { ApiOperation, ApiParam } from '@nestjs/swagger';
+import { quizDto } from './dto/quiz.dto';
 
 
 @Controller('quiz')
 export class QuizController {
   constructor(private readonly quizService: QuizService) {}
 
-
-
-  @Get()
-  findAll() {
-    return this.quizService.findAll();
+  @Post('/create')
+  @ApiOperation({
+    summary : '',
+    description : '',
+  })
+  public async createQuiz(
+    @Request() req,
+    @Body() quiz: quizDto,
+  ){
+    return this.quizService.create(quiz)
   }
+  
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.quizService.findOne(+id);
-  }
-
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.quizService.remove(+id);
-  }
+ 
 }
