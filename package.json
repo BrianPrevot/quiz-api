@@ -25,7 +25,7 @@
     "typeorm:path-config": "npm run build && npx typeorm -d dist/typeORM.config.js",
     "typeorm:migration-generate": "npm run typeorm:path-config -- migration:generate ./migrations/version ",
     "typeorm:db-create": "npm run build && ts-node ./node_modules/typeorm/index.js db:create -d dist/typeORM.config.js",
-    "typeorm:run-migrations": "npm run typeorm migration:run -- -d ./dist/typeORM.config.js"
+    "typeorm:run-migration": "npm run typeorm migration:run -- -d ./dist/typeORM.config.js"
   },
   "dependencies": {
     "@nestjs-hybrid-auth/twitch": "^1.0.0",

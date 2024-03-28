@@ -1,6 +1,8 @@
+import { Category } from "src/category/entities/category.entity";
+import { FalseAnswer } from "src/false-answer/entities/false-answer.entity";
 import { Quiz } from "src/quiz/entities/quiz.entity";
 import { User } from "src/user/entities/user.entity";
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Question {
@@ -15,9 +17,6 @@ export class Question {
     @Column({name : "answer",length : 255, nullable : false})
     answer : String;
 
-    @Column()
-    category : string;
-
     ///  RELATIONS
     @ManyToMany(() => Quiz)
     questions : Question[]
@@ -25,4 +24,11 @@ export class Question {
     @ManyToOne(()=> User, (user) => user.questions)
     @JoinColumn({name : "owner_id" })
     owner : User[];
+
+    @ManyToOne(()=> Category, (category) => category.questions)
+    @JoinColumn({name : "category_id" })
+    category : Category;
+
+    @OneToOne(() => FalseAnswer, (falseAnswer) => falseAnswer.questions)
+    falseAnswers : FalseAnswer[];
 }

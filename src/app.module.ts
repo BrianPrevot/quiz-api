@@ -14,6 +14,10 @@ import { config } from 'dotenv';
 import { Question } from './question/entities/question.entity';
 import { Quiz } from './quiz/entities/quiz.entity';
 import { User } from './user/entities/user.entity';
+import { CategoryModule } from './category/category.module';
+import { FalseAnswerModule } from './false-answer/false-answer.module';
+import { FalseAnswer } from './false-answer/entities/false-answer.entity';
+import { Category } from './category/entities/category.entity';
 
 
 
@@ -29,7 +33,7 @@ import { User } from './user/entities/user.entity';
     database: configService.getOrThrow<string>('DATABASE_NAME'),
     username: configService.getOrThrow<string>('DATABASE_USER'),
     migrations: ['src/migrations/**'],
-    entities: [User, Question,Quiz ],
+    entities: [User, Question,Quiz,FalseAnswer,Category ],
     logging: true,
     synchronize: false,
     })
@@ -52,6 +56,8 @@ TwitchAuthModule.forRootAsync({
   }),
 }),
 QuestionModule,
+CategoryModule,
+FalseAnswerModule,
 ],
   controllers: [AppController, AuthController],
   providers: [AppService],

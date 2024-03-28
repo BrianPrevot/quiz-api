@@ -5,7 +5,5 @@ import { configDotenv } from 'dotenv';
 @Injectable()
 export class AppService {
   constructor(private readonly configService: ConfigService) {}
-  getHello(): string {
-    return this.configService.get('TWITCH_CLIENT_ID');
-  }
+  
 }

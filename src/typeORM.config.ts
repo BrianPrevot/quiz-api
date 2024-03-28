@@ -4,6 +4,8 @@ import { User } from "src/user/entities/user.entity";
 import { Quiz } from "./quiz/entities/quiz.entity";
 import { Question } from "./question/entities/question.entity";
 import { DataSource } from "typeorm";
+import { FalseAnswer } from "./false-answer/entities/false-answer.entity";
+import { Category } from "./category/entities/category.entity";
 
 
 
@@ -18,7 +20,7 @@ const typeOrmConfig = new DataSource({
     database: configService.getOrThrow<string>('DATABASE_NAME'),
     username: configService.getOrThrow<string>('DATABASE_USER'),
     migrations: ['src/migration/**'],
-    entities: [User, Question,Quiz ],
+    entities: [User, Question,Quiz,FalseAnswer,Category ],
     logging: true,
     synchronize: true,
 });
